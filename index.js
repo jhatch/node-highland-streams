@@ -1,7 +1,7 @@
 //
 // # use node to search Wikipedia from the command line!
 //
-//     ## also learn about RxJS...
+//     ## also learn about reactive style programming and Highland
 //
 var config     = require('config');
 var request    = require('request-promise');
@@ -17,12 +17,8 @@ process.stdin.setRawMode(true); // go char by char instead of line by line
 //    1. to keep a buffer of all chars entered
 //    2. to debounce and wait for the right time to fire a search
 //
-// ## TODO:
-//    - refactor to use 1 stream with multiple observables instead of using multiple streams
-//    - make a buffer class
-//
 var buffer = [];
-var bufferStream   = highland(process.stdin);
+var bufferStream   = highland(process.stdin); // convert ReadableStream to Highland Stream
 var debounceStream = highland(process.stdin);
 
 // 1.
@@ -36,6 +32,7 @@ killStream.init();
 
 // outter wrapper for searching wikipedia
 function runSearch() {
+  // converting Promise/A+ to Highland Stream
   highland(searchWikipedia( buffer.join('') )).collect().each(res => console.log('Wikipedia:', res));
   buffer = [];
   process.stdout.write('\n');
