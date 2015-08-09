@@ -13,19 +13,19 @@ A little example of how to use the HighlandJS library to manage asyncronous cont
 Imagine you have a DOM `keyup` handler. Each time a `keyup` is fired is like a new item in an array-like collection of events. Now what if you could do things like `map`, `filter`, and `reduce` that theoretical collection?
 
 ```javascript
-  // get a frequent event source
-  var text = _('keyup', $('#searchbox'));
+// get a frequent event source
+var text = _('keyup', $('#searchbox'));
 
-  // Regulate event stream:
-  // - wait until no keyup events for 1s
-  // - when read from, only return the latest value
-  var searches = text.debounce(1000).latest();
+// Regulate event stream:
+// - wait until no keyup events for 1s
+// - when read from, only return the latest value
+var searches = text.debounce(1000).latest();
 
-  // map the search events to an AJAX request
-  var results = searches.map(searchRequest);
+// map the search events to an AJAX request
+var results = searches.map(searchRequest);
 
-  // for each response, display it
-  results.each(function (result) {
-      // display result
-  });
+// for each response, display it
+results.each(function (result) {
+    // display result
+});
 ```
