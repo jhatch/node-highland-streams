@@ -1,0 +1,16 @@
+{
+  "name": "reactive-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^1.15.0",
+    "highland": "^2.5.1",
+    "request-promise": "^0.4.3"
+  }
+}
